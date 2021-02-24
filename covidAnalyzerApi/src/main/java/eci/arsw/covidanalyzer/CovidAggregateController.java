@@ -4,12 +4,20 @@ import eci.arsw.covidanalyzer.model.Result;
 import eci.arsw.covidanalyzer.model.ResultType;
 import eci.arsw.covidanalyzer.service.ICovidAggregateService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CovidAggregateController {
+     @Autowired
+    @Qualifier("CovidAggregateServiceStub")
+   
+
     ICovidAggregateService covidAggregateService;
 
     //TODO: Implemente todos los metodos POST que hacen falta.
@@ -18,7 +26,8 @@ public class CovidAggregateController {
     public ResponseEntity addTruePositiveResult(Result result) {
         //TODO
         covidAggregateService.aggregateResult(result, ResultType.TRUE_POSITIVE);
-        return null;
+         return null;
+        
     }
 
     //TODO: Implemente todos los metodos GET que hacen falta.
