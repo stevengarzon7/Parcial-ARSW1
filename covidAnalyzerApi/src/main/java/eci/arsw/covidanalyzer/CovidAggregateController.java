@@ -27,14 +27,12 @@ public class CovidAggregateController {
     //TODO: Implemente todos los metodos POST que hacen falta.
 
     @RequestMapping(value = "/covid/result/true-positive", method = RequestMethod.POST)
-    public ResponseEntity addTruePositiveResult(Result result) {
+    public ResponseEntity  addTruePositiveResult(Result result) {
         //TODO
-        try{
+       
             covidAggregateService.aggregateResult(result, ResultType.TRUE_POSITIVE);
             return new ResponseEntity<>("Created",HttpStatus.CREATED);
-        }catch(ForbiddenException fe){
-            return new ResponseEntity<>("FORBIDDEN", HttpStatus.FORBIDDEN);
-        }
+       
             
         
         
@@ -55,17 +53,13 @@ public class CovidAggregateController {
     @RequestMapping(value = "/covid/result/persona/{id}", method = RequestMethod.PUT)
     public ResponseEntity savePersonaWithMultipleTests(UUID id, ResultType type) {
       
-        try{
+        
             covidAggregateService.upsertPersonWithMultipleTests(id, type);
             return new ResponseEntity<>(type, HttpStatus.ACCEPTED);
-        }catch(NotFoundException ne){
-            ne.printStackTrace();
-            return new ResponseEntity<>("Not found - 404", HttpStatus.NOT_FOUND);
-        }catch(ForbiddenException fe){
-            fe.printStackTrace();
-            return new ResponseEntity<>("FORBIDDEN", HttpStatus.FORBIDDEN);
-        }
+       
         
     }
+    
+    
     
 }
