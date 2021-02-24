@@ -12,11 +12,23 @@ public class Result {
     private String testString;
     private boolean result;
     private double testSpecifity;
+    private int testRealize;
     private ResultType resultType;
 
-    public Result() {
-
+    public Result(UUID id, String firstName, String lastName, String gender, String email, String birthString, String testString, boolean result, double testSpecifity, ResultType resultType, int testRealize) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.email = email;
+        this.birthString = birthString;
+        this.testString = testString;
+        this.result = result;
+        this.testSpecifity = testSpecifity;
+        this.resultType = resultType;
+        this.testRealize = testRealize;
     }
+
 
 
     public UUID getId() {
@@ -127,8 +139,15 @@ public class Result {
     }
 
 
-    @Override
     public String toString() {
         return this.id.toString() + " - " + this.firstName + " - " + this.lastName;
+    }
+
+    public int getTestRealize() {
+        return testRealize; //To change body of generated methods, choose Tools | Templates.
+    }
+
+     public void setTestRealize(int testRealize) {
+        this.testRealize = testRealize;
     }
 }

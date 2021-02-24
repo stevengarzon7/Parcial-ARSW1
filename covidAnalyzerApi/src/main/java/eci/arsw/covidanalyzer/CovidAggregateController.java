@@ -46,6 +46,40 @@ public class CovidAggregateController {
         
         return new ResponseEntity<>(covidAggregateService.getResult(ResultType.TRUE_POSITIVE),HttpStatus.ACCEPTED);
     }
+       @RequestMapping(value = "/covid/result/true-negative", method = RequestMethod.GET)
+    public ResponseEntity getTrueNegativeResult() {
+        return new ResponseEntity<>(covidAggregateService.getResult(ResultType.TRUE_NEGATIVE), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "/covid/result/false-positive", method = RequestMethod.GET)
+    public ResponseEntity getFalsePositiveResult() {
+        return new ResponseEntity<>(covidAggregateService.getResult(ResultType.FALSE_POSITIVE), HttpStatus.ACCEPTED);
+    }
+
+    @RequestMapping(value = "/covid/result/false-negative", method = RequestMethod.GET)
+    public ResponseEntity getFalseNegativeResult() {
+        return new ResponseEntity<>(covidAggregateService.getResult(ResultType.FALSE_NEGATIVE), HttpStatus.ACCEPTED);
+    }
+
+    
+     @RequestMapping(value = "/covid/result/true-negative", method = RequestMethod.POST)
+    public ResponseEntity addTrueNegativeResult(Result result) {
+        covidAggregateService.aggregateResult(result, ResultType.TRUE_NEGATIVE);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    
+     @RequestMapping(value = "/covid/result/false-positive", method = RequestMethod.POST)
+    public ResponseEntity addFalsePositiveResult(Result result) {
+        covidAggregateService.aggregateResult(result, ResultType.FALSE_POSITIVE);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/covid/result/false-negative", method = RequestMethod.POST)
+    public ResponseEntity addFalseNegativeResult( Result result) {
+        covidAggregateService.aggregateResult(result, ResultType.FALSE_NEGATIVE);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
 
 
     //TODO: Implemente el método.

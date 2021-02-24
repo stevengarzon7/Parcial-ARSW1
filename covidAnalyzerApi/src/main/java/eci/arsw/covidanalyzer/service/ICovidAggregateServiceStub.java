@@ -14,9 +14,14 @@ public class ICovidAggregateServiceStub implements ICovidAggregateService {
 
     @Override
     public void aggregateResult(Result result, ResultType type) {
+        int testNumber;
         for (Result r:resultList) {
             if (r.equals(result)) {
                 r.setResultType(type);
+
+                testNumber = r.getTestRealize();
+                testNumber += 1;
+                r.setTestRealize(testNumber);
             }
         }
     }
@@ -37,6 +42,7 @@ public class ICovidAggregateServiceStub implements ICovidAggregateService {
 
     @Override
     public void upsertPersonWithMultipleTests(UUID id, ResultType type) {
-
+        
+        
     }
 }
