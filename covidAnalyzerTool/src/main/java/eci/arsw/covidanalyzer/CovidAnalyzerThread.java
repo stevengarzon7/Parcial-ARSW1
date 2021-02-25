@@ -16,6 +16,14 @@ class CovidAnalyzerThread extends Thread{
     private AtomicInteger amountOfFilesProcessed;
     private List<File> resultFiles;
     private boolean pausa;
+    
+     public CovidAnalyzerThread(ResultAnalyzer resultAnalyzer, TestReader testReader, AtomicInteger amountOfFilesProcessed, List<File> resultFiles){
+        this.resultAnalyzer = resultAnalyzer;
+        this.amountOfFilesProcessed = amountOfFilesProcessed;
+        this.testReader = testReader;
+        this.resultFiles = resultFiles;
+
+    }
 
     public void esperaSegura() {
         pausa=true;

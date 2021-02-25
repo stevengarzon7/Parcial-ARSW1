@@ -44,6 +44,8 @@ public class CovidAnalyzerTool implements Runnable{
         for (int i = 0; i < NUMBER_THREADS; i++) {
             int aux = i+1==NUMBER_THREADS?amountOfFilesTotal%NUMBER_THREADS:0;
             List<File> numberFiles = resultFiles.subList(i*amountOfFileByThread, (i+1)*amountOfFileByThread+aux);
+            CovidAnalyzerThread covidAnalyzerThread = new CovidAnalyzerThread(resultAnalyzer, testReader, amountOfFilesProcessed, numberFiles);
+            covidAnalyzerThreads.add(covidAnalyzerThread);
         }
         System.out.println(amountOfFileByThread);
         for (File resultFile : resultFiles) {
