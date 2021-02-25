@@ -19,7 +19,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 @RestController
 public class CovidAggregateController {
      @Autowired
-    @Qualifier("CovidAggregateServiceStub")
+    @Qualifier("ICovidAggregateServiceStub")
    
 
     ICovidAggregateService covidAggregateService;
