@@ -39,7 +39,7 @@ public class TestReporter {
                 break;
         }
 
-        try {
+       try {
             String jsonString = mapper.writeValueAsString(result);
             Unirest.post(SERVER_URL + complement)
                     .body(jsonString)

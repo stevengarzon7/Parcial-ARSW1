@@ -35,30 +35,27 @@ class CovidAnalyzerThread extends Thread{
             notifyAll();
         }
     }
-     public void run(){
-        int contador = 0;
-        while(contador<resultFiles.size()){
-            while (!pausa) {
-                try {
-                    this.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+       public void run() {
+        for (File file:resultFiles) {
+            synchronized (this) {
+                while (pausa) {
+                    try {
+                        wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-            for(File transactionFile : resultFiles)
-            {
 
-                List<Result> results = testReader.readResultsFromFile(transactionFile);
-                for(Result result : results)
-                {
-                    resultAnalyzer.addResult(result);
-                }
-                amountOfFilesProcessed.incrementAndGet();
-                contador++;
+            List<Result> results = testReader.readResultsFromFile(file);
+
+            for (Result result:results) {
+                resultAnalyzer.addResult(result);
             }
 
+            amountOfFilesProcessed.incrementAndGet();
         }
-     }
+    }
 }
 
     

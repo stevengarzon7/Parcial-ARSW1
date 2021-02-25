@@ -46,6 +46,7 @@ public class CovidAnalyzerTool implements Runnable{
             List<File> numberFiles = resultFiles.subList(i*amountOfFileByThread, (i+1)*amountOfFileByThread+aux);
             CovidAnalyzerThread covidAnalyzerThread = new CovidAnalyzerThread(resultAnalyzer, testReader, amountOfFilesProcessed, numberFiles);
             covidAnalyzerThreads.add(covidAnalyzerThread);
+            covidAnalyzerThreads.getLast().start();
         }
         System.out.println(amountOfFileByThread);
         for (File resultFile : resultFiles) {
@@ -130,9 +131,8 @@ public class CovidAnalyzerTool implements Runnable{
      * A main() so we can easily run these routing rules in our IDE
      */
     public static void main(String... args) throws Exception {
-        CovidAnalyzerTool covidAnalyzerTool = new CovidAnalyzerTool();
-        Thread processingThread = new Thread(() -> covidAnalyzerTool.processResultData());
-        processingThread.start();
+        Thread thread = new Thread(new CovidAnalyzerTool());
+        thread.start();
         
         
     }
