@@ -17,7 +17,7 @@ public class TestReporter {
     public static final int TRUE_NEGATIVE = 2;
     public static final int FALSE_NEGATIVE = 3;
 
-    private static final String SERVER_URL = "http://covidanalyzer2021.herokuapp.com/covid/result";
+    private static final String SERVER_URL = "http://localhost:8080/covid/result";
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -38,7 +38,7 @@ public class TestReporter {
                 complement += "false-negative";
                 break;
         }
-        /*
+        
        try {
             String jsonString = mapper.writeValueAsString(result);
             Unirest.post(SERVER_URL + complement)
@@ -46,7 +46,7 @@ public class TestReporter {
                     .asString();
         } catch (JsonProcessingException | UnirestException e) {
             Logger.getLogger(TestReporter.class.getName()).log(Level.SEVERE, "Unable to report covid test result", e);
-        }*/
+        }
     }
 
 }
